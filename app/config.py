@@ -1,39 +1,37 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
 basedir = Path(__file__).parent.absolute()
+load_dotenv(basedir / ".env")
 
 
 class BaseConfig:
     NAME = "base"
-    DEBUG = False
+    TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(BaseConfig):
     NAME = "dev"
-    SECRET_KEY = os.getenv("DEV_SECRET_KEY", "dev secret key")
     DEBUG = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    TESTING = False
+    SECRET_KEY = os.getenv("DEV_SECRET_KEY", "dev secret key")
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir}/app-dev.db"
 
 
 class TestingConfig(BaseConfig):
     NAME = "test"
-    SECRET_KEY = os.getenv("TEST_SECRET_KEY", "testing secret key")
     DEBUG = True
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
     TESTING = True
+    SECRET_KEY = os.getenv("TEST_SECRET_KEY", "testing secret key")
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir}/app-test.db"
 
 
 class ProductionConfig(BaseConfig):
     NAME = "prod"
-    SECRET_KEY = os.getenv("PROD_SECRET_KEY", "prod secret key")
     DEBUG = False
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    TESTING = False
+    SECRET_KEY = os.getenv("PROD_SECRET_KEY", "prod secret key")
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{basedir}/app-prod.db"
 
 
