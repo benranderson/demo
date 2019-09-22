@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 from flask.cli import FlaskGroup
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from redis import Redis
+import rq
 
 
 # instantiate the extensions
@@ -23,6 +25,10 @@ def create_app(env=None):
     # set up extensions
     db.init_app(app)
     migrate.init_app(app, db)
+
+    # configure redis
+    app.redis = Redis.from_url(app.config["REDIS_URL"])
+    app.task_queue = rq.Queue("demo-jobs", connection=app.redis)
 
     # register blueprints
     from app.api.routes import bp as api_bp

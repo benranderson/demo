@@ -4,7 +4,7 @@ import click
 from app import create_app, db
 from app.models import Job
 
-env = os.getenv("FLASK_ENV") or "test"
+env = os.getenv("FLASK_ENV") or "dev"
 print(f"Active environment: * {env} *")
 app = create_app(env)
 
@@ -18,10 +18,10 @@ def recreate_db():
     db.session.commit()
 
 
-@app.cli.command()
-def seed():
-    """Seeds the database."""
-    print("Seeding database.")
-    job = Job(name="Seed Job", description="Just a seed job")
-    db.session.add(job)
-    db.session.commit()
+# @app.cli.command()
+# def seed():
+#     """Seeds the database."""
+#     print("Seeding database.")
+#     job = Job(name="Seed Job", description="Just a seed job")
+#     db.session.add(job)
+#     db.session.commit()
