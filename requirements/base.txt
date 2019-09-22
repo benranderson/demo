@@ -1,5 +1,6 @@
 flask
 Flask-SQLAlchemy
 Flask-RESTful
+Flask-Migrate
 python-dotenv
 rq
