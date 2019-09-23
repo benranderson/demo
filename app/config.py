@@ -11,7 +11,8 @@ class BaseConfig:
     NAME = "base"
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    REDIS_URL = os.environ.get("REDIS_URL") or "redis://"
+    REDIS_URL = os.environ.get("REDIS_URL") or "redis://redis:6379/0"
+    QUEUE = "demo-jobs"
 
 
 class DevelopmentConfig(BaseConfig):

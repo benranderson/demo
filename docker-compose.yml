@@ -1,5 +1,7 @@
-version: '3'
+version: "3"
+
 services:
+
   web:
     build: .
     ports:
@@ -8,5 +10,24 @@ services:
       - .:/app
     environment:
       FLASK_ENV: dev
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: python manage.py run_worker
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+
   redis:
     image: "redis:alpine"
+  
+  dashboard:
+    image: eoranged/rq-dashboard
+    ports:
+      - "9181:9181"
+    environment:
+      RQ_DASHBOARD_REDIS_URL: redis://redis:6379/0
+    

@@ -31,9 +31,6 @@ def _set_task_progress(progress):
         rq_job.meta["progress"] = progress
         rq_job.save_meta()
         job = Job.query.get(rq_job.get_id())
-        # job.user.add_notification(
-        #     "task_progress", {"task_id": rq_job.get_id(), "progress": progress}
-        # )
         if progress >= 100:
             job.complete = True
         db.session.commit()
