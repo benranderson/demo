@@ -4,18 +4,31 @@ services:
 
   web:
     build: .
-    ports:
-      - "5000:5000"
     volumes:
       - .:/app
+    ports:
+      - 5001:5000
     environment:
-      FLASK_ENV: dev
+      - FLASK_ENV=dev
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/demo_dev
+      - DATABASE_TEST_URL=postgresql://postgres:postgres@postgres:5432/demo_test
     depends_on:
       - redis
+      - postgres
+
+  postgres:
+    build:
+      context: ./demo/db
+      dockerfile: Dockerfile
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   worker:
     build: .
-    command: python manage.py run_worker
+    command: flask run-worker
     volumes:
       - .:/app
     depends_on:
@@ -24,10 +37,10 @@ services:
   redis:
     image: "redis:alpine"
   
-  dashboard:
-    image: eoranged/rq-dashboard
-    ports:
-      - "9181:9181"
-    environment:
-      RQ_DASHBOARD_REDIS_URL: redis://redis:6379/0
+  # dashboard:
+  #   image: eoranged/rq-dashboard
+  #   ports:
+  #     - "9181:9181"
+  #   environment:
+  #     RQ_DASHBOARD_REDIS_URL: redis://redis:6379/0
     

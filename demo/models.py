@@ -4,7 +4,7 @@ from flask import current_app
 import redis
 import rq
 
-from app import db
+from demo import db
 
 
 class Job(db.Model):

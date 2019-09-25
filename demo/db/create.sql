@@ -1,0 +1,3 @@
+CREATE DATABASE demo_prod;
+CREATE DATABASE demo_dev;
+CREATE DATABASE demo_test;

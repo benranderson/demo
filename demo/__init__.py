@@ -17,7 +17,7 @@ def create_app(env=None):
     app = Flask(__name__)
 
     # set config
-    from app.config import config_by_name
+    from demo.config import config_by_name
 
     app.config.from_object(config_by_name[env or "test"])
 
@@ -30,18 +30,18 @@ def create_app(env=None):
     app.task_queue = rq.Queue(app.config["QUEUE"], connection=app.redis)
 
     # register blueprints
-    from app.api.routes import bp as api_bp
+    from demo.api.routes import bp as api_bp
 
     app.register_blueprint(api_bp, url_prefix="/api")
 
-    from app.main import bp as main_bp
+    from demo.main import bp as main_bp
 
     app.register_blueprint(main_bp)
 
     # shell context for flask cli
     @app.shell_context_processor
     def ctx():
-        from app.models import Job
+        from demo.models import Job
 
         return {"app": app, "db": db, "Job": Job}
 

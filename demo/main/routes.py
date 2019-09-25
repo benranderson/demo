@@ -1,8 +1,8 @@
 from flask import render_template, request, current_app, jsonify
 
-from app import db
-from app.main import bp
-from app.models import Job
+from demo import db
+from demo.main import bp
+from demo.models import Job
 
 
 @bp.route("/")

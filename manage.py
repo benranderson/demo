@@ -1,21 +1,24 @@
 import os
 import subprocess
 
+import sys
+import unittest
+
 import click
 import redis
 from rq import Connection, Worker
 from flask.cli import FlaskGroup
 
-from app import create_app, db
-from app.models import Job
+from demo import create_app, db
+from demo.models import Job
 
 env = os.getenv("FLASK_ENV") or "dev"
 print(f"Active environment: * {env} *")
 app = create_app(env)
-cli = FlaskGroup(create_app=create_app)
+cli = FlaskGroup(app)
 
 
-@cli.command()
+@app.cli.command()
 @click.argument("path", default="tests")
 def test(path):
     """Run tests with Pytest.
@@ -27,7 +30,7 @@ def test(path):
     return subprocess.call(cmd, shell=True)
 
 
-@cli.command()
+@app.cli.command()
 def recreate_db():
     """Recreate database."""
     print("Recreating database.")
@@ -36,7 +39,7 @@ def recreate_db():
     db.session.commit()
 
 
-@cli.command("run_worker")
+@app.cli.command()
 def run_worker():
     redis_url = app.config["REDIS_URL"]
     redis_connection = redis.from_url(redis_url)

@@ -2,5 +2,6 @@ flask
 Flask-SQLAlchemy
 Flask-RESTful
 Flask-Migrate
+psycopg2-binary
 python-dotenv
 rq

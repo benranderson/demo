@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_restful import Resource, Api, reqparse
 
-from app import db
-from app.models import Job
+from demo import db
+from demo.models import Job
 
 
 bp = Blueprint("api", __name__)
@@ -45,4 +45,3 @@ class JobsList(Resource):
 api.add_resource(JobsPing, "/ping")
 api.add_resource(Jobs, "/jobs/<job_id>")
 api.add_resource(JobsList, "/jobs")
-
