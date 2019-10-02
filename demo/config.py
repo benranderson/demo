@@ -28,7 +28,7 @@ class TestingConfig(BaseConfig):
     NAME = "test"
     DEBUG = True
     TESTING = True
-    SECRET_KEY = os.getenv("TEST_SECRET_KEY", "testing secret key")
+    SECRET_KEY = os.getenv("TEST_SECRET_KEY", "test secret key")
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_TEST_URL", f"sqlite:///{basedir}/data-test.sqlite"
     )
