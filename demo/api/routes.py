@@ -13,7 +13,7 @@ parser.add_argument("name")
 parser.add_argument("description")
 
 
-class JobsPing(Resource):
+class Ping(Resource):
     def get(self):
         return {"status": "success", "message": "pong!"}
 
@@ -42,6 +42,6 @@ class JobsList(Resource):
 
 
 # setup API resource routing
-api.add_resource(JobsPing, "/ping")
+api.add_resource(Ping, "/ping")
 api.add_resource(Jobs, "/jobs/<job_id>")
 api.add_resource(JobsList, "/jobs")

@@ -1,4 +1,4 @@
 -r test.txt
-black
-pylint
-pre-commit
+black==19.3b0
+pylint==2.3.1
+pre-commit==1.18.3

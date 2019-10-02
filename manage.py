@@ -12,22 +12,23 @@ from flask.cli import FlaskGroup
 from demo import create_app, db
 from demo.models import Job
 
-env = os.getenv("FLASK_ENV") or "dev"
+env = os.getenv("FLASK_ENV") or "development"
 print(f"Active environment: * {env} *")
 app = create_app(env)
-cli = FlaskGroup(app)
+# cli = FlaskGroup(app)
 
 
 @app.cli.command()
-@click.argument("path", default="tests")
-def test(path):
-    """Run tests with Pytest.
-
-    :param path: Test path
-    :return: Subprocess call result
-    """
-    cmd = f"py.test {path}"
-    return subprocess.call(cmd, shell=True)
+@click.option("-c", "--cover", is_flag=True, help="Run with coverage report.")
+def test(cover):
+    """Run the tests with or without coverage."""
+    if cover:
+        cmd = "pytest --cov=src/"
+        print("Running tests with coverage.")
+    else:
+        cmd = "pytest"
+        print("Running tests.")
+    return subprocess.run(cmd, shell=True)
 
 
 @app.cli.command()
@@ -57,5 +58,5 @@ def run_worker():
 #     db.session.commit()
 
 
-if __name__ == "__main__":
-    cli()
+# if __name__ == "__main__":
+#     cli()

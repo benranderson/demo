@@ -11,15 +11,17 @@ class BaseConfig:
     NAME = "base"
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    REDIS_URL = os.environ.get("REDIS_URL") or "redis://redis:6379/0"
+    REDIS_URL = os.environ.get("REDIS_URL", "redis://redis:6379/0")
     QUEUE = "demo-jobs"
 
 
 class DevelopmentConfig(BaseConfig):
-    NAME = "dev"
+    NAME = "development"
     DEBUG = True
     SECRET_KEY = os.getenv("DEV_SECRET_KEY", "dev secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DATABASE_URL", f"sqlite:///{basedir}/data-dev.sqlite"
+    )
 
 
 class TestingConfig(BaseConfig):
@@ -27,14 +29,18 @@ class TestingConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     SECRET_KEY = os.getenv("TEST_SECRET_KEY", "testing secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_TEST_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DATABASE_TEST_URL", f"sqlite:///{basedir}/data-test.sqlite"
+    )
 
 
 class ProductionConfig(BaseConfig):
     NAME = "prod"
     DEBUG = False
     SECRET_KEY = os.getenv("PROD_SECRET_KEY", "prod secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        "DATABASE_URL", f"sqlite:///{basedir}/data-prod.sqlite"
+    )
 
 
 EXPORT_CONFIGS = [DevelopmentConfig, TestingConfig, ProductionConfig]

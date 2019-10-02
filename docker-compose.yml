@@ -1,15 +1,19 @@
-version: "3"
+version: "3.7"
 
 services:
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ['/app/entrypoint.sh']
     volumes:
       - .:/app
     ports:
       - 5001:5000
     environment:
-      - FLASK_ENV=dev
+      - FLASK_APP=manage.py
+      - FLASK_ENV=development
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/demo_dev
       - DATABASE_TEST_URL=postgresql://postgres:postgres@postgres:5432/demo_test
     depends_on:
@@ -20,8 +24,8 @@ services:
     build:
       context: ./demo/db
       dockerfile: Dockerfile
-    ports:
-      - 5435:5432
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

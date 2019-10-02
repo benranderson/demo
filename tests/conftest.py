@@ -4,21 +4,15 @@ from demo import create_app
 from demo import db as _db
 
 
-@pytest.yield_fixture(scope="session")
+@pytest.fixture(scope="session")
 def app():
     """Setup flask test app, this only gets executed once."""
     _app = create_app("test")
-
-    # establish an application context before running the tests
-    ctx = _app.app_context()
-    ctx.push()
-
-    yield _app
-
-    ctx.pop()
+    with _app.app_context():
+        yield _app
 
 
-@pytest.yield_fixture(scope="function")
+@pytest.fixture
 def client(app):
     """
     Setup an app client, this gets executed for each test function.
