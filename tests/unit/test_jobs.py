@@ -1,6 +1,6 @@
 import pytest
 
-from demo.models import Job
+from demo.api.jobs.models import Job
 
 
 @pytest.fixture

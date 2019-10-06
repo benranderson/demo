@@ -4,7 +4,7 @@ import time
 from rq import get_current_job
 
 from demo import db, create_app
-from demo.models import Job
+from demo.api.jobs.models import Job
 
 env = os.getenv("FLASK_ENV") or "development"
 app = create_app(env)

@@ -2,20 +2,15 @@ from flask import Blueprint, jsonify, request
 from flask_restful import Resource, Api, reqparse
 
 from demo import db
-from demo.models import Job
+from demo.api.jobs.models import Job
 
 
-bp = Blueprint("api", __name__)
-api = Api(bp)
+jobs_bp = Blueprint("jobs", __name__)
+api = Api(jobs_bp)
 
 parser = reqparse.RequestParser()
 parser.add_argument("name")
 parser.add_argument("description")
-
-
-class Ping(Resource):
-    def get(self):
-        return {"status": "success", "message": "pong!"}
 
 
 class Jobs(Resource):
@@ -42,6 +37,5 @@ class JobsList(Resource):
 
 
 # setup API resource routing
-api.add_resource(Ping, "/ping")
-api.add_resource(Jobs, "/jobs/<job_id>")
 api.add_resource(JobsList, "/jobs")
+api.add_resource(Jobs, "/jobs/<job_id>")

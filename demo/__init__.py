@@ -30,11 +30,15 @@ def create_app(env=None):
     app.task_queue = rq.Queue(app.config["QUEUE"], connection=app.redis)
 
     # register blueprints
-    from demo.api.routes import bp as api_bp
+    from demo.api.ping import ping_bp
 
-    app.register_blueprint(api_bp, url_prefix="/api")
+    app.register_blueprint(ping_bp)
 
-    from demo.main import bp as main_bp
+    from demo.api.jobs.views import jobs_bp
+
+    app.register_blueprint(jobs_bp, url_prefix="/jobs")
+
+    from demo.main import main_bp
 
     app.register_blueprint(main_bp)
 

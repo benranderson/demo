@@ -33,4 +33,6 @@ def db(app):
     """
     _db.drop_all()
     _db.create_all()
-    return _db
+    yield _db
+    _db.session.remove()
+    _db.drop_all()

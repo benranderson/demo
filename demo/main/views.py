@@ -1,16 +1,16 @@
 from flask import render_template, request, current_app, jsonify
 
 from demo import db
-from demo.main import bp
-from demo.models import Job
+from demo.main import main_bp
+from demo.api.jobs.models import Job
 
 
-@bp.route("/")
+@main_bp.route("/")
 def index():
     return render_template("index.html")
 
 
-@bp.route("/submit", methods=["POST"])
+@main_bp.route("/submit", methods=["POST"])
 def submit():
     data = request.get_json()
     name = data.get("name")
@@ -23,13 +23,13 @@ def submit():
     return job.to_dict(), 201
 
 
-@bp.route("/jobs")
+@main_bp.route("/jobs")
 def get_jobs_in_progress():
     jobs = Job.query.filter_by(complete=False).all()
     return jsonify({"jobs": [job.to_dict() for job in jobs], "count": len(jobs)})
 
 
-@bp.route("/jobs/<id>")
+@main_bp.route("/jobs/<id>")
 def get_job(id):
     job = Job.query.filter_by(id=id).first_or_404()
     return jsonify(job.to_dict())
