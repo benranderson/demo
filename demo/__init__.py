@@ -34,20 +34,22 @@ def create_app(env=None):
 
     app.register_blueprint(ping_bp)
 
-    from demo.api.jobs.views import jobs_bp
-
-    app.register_blueprint(jobs_bp, url_prefix="/jobs")
-
     from demo.main import main_bp
 
     app.register_blueprint(main_bp)
 
+    from demo.api.users.views import users_bp
+
+    app.register_blueprint(users_bp, url_prefix="/users")
+
+    from demo.api.jobs.views import jobs_bp
+
+    app.register_blueprint(jobs_bp, url_prefix="/jobs")
+
     # shell context for flask cli
     @app.shell_context_processor
     def ctx():
-        from demo.models import Job
-
-        return {"app": app, "db": db, "Job": Job}
+        return {"app": app, "db": db}
 
     # health check end point
     @app.route("/health")

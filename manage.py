@@ -10,7 +10,6 @@ from rq import Connection, Worker
 from flask.cli import FlaskGroup
 
 from demo import create_app, db
-from demo.models import Job
 
 env = os.getenv("FLASK_ENV") or "development"
 print(f"Active environment: * {env} *")
