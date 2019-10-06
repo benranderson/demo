@@ -40,11 +40,11 @@ def create_app(env=None):
 
     from demo.api.users.views import users_bp
 
-    app.register_blueprint(users_bp, url_prefix="/users")
+    app.register_blueprint(users_bp)
 
     from demo.api.jobs.views import jobs_bp
 
-    app.register_blueprint(jobs_bp, url_prefix="/jobs")
+    app.register_blueprint(jobs_bp)
 
     # shell context for flask cli
     @app.shell_context_processor
