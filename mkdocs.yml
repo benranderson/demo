@@ -1,0 +1,9 @@
+site_name: Demo
+site_description: A demonstration application.
+theme:
+  name: 'material'
+repo_name: benranderson/demo
+repo_url: https://github.com/benranderson/demo
+nav:
+  - Home: index.md
+  - About: about.md
