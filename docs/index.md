@@ -1,17 +1,23 @@
-# Welcome to Demo Documentation
+<p align="center">
+  <img width="420px" src="img/lights.jpeg" alt='lights'>
+</p>
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+---
+
+# Introduction
+
+Demo is a showcase application that demonstrates the following features:
+
+* REST API using [Flask-RESTPlus](https://flask-restplus.readthedocs.io/en/stable/)
+* Container orchestration using [Docker Compose](https://docs.docker.com/compose/)
+* Unit testing using [pytest](https://docs.pytest.org/en/latest/)
+* Test coverage using [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/)
+* Background jobs using [Redis Queue](https://python-rq.org)
+* Database ORM using [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+* Database migrations using [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/)
+* Pre-commit hooks using [pre-commit](https://pre-commit.com)
+* Documentation using [MkDocs](https://www.mkdocs.org) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
 
 ## Commands
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+To do..
