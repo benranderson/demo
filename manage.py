@@ -10,11 +10,11 @@ from rq import Connection, Worker
 from flask.cli import FlaskGroup
 
 from demo import create_app, db
+from demo.api.users.models import User
 
 env = os.getenv("FLASK_ENV") or "development"
 print(f"Active environment: * {env} *")
 app = create_app(env)
-# cli = FlaskGroup(app)
 
 
 @app.cli.command()
@@ -48,14 +48,10 @@ def run_worker():
         worker.work()
 
 
-# @app.cli.command()
-# def seed():
-#     """Seeds the database."""
-#     print("Seeding database.")
-#     job = Job(name="Seed Job", description="Just a seed job")
-#     db.session.add(job)
-#     db.session.commit()
-
-
-# if __name__ == "__main__":
-#     cli()
+@app.cli.command()
+def seed_db():
+    """Seeds the database."""
+    print("Seeding database.")
+    db.session.add(User(username="ben", email="ben@email.com"))
+    db.session.add(User(username="benranderson", email="ben@email.org"))
+    db.session.commit()
