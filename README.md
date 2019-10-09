@@ -12,7 +12,7 @@
 
 # Demo Application
 
-Demonstrates the following features:
+Demo is a showcase application that demonstrates the following features:
 
 * REST API using [Flask-RESTPlus](https://flask-restplus.readthedocs.io/en/stable/)
 * Container orchestration using [Docker Compose](https://docs.docker.com/compose/)
