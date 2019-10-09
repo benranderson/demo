@@ -1,13 +1,9 @@
 import os
 import subprocess
 
-import sys
-import unittest
-
 import click
 import redis
 from rq import Connection, Worker
-from flask.cli import FlaskGroup
 
 from demo import create_app, db
 from demo.api.users.models import User

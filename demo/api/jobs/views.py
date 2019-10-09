@@ -1,11 +1,10 @@
-from flask import Blueprint, jsonify, request
-from flask_restful import Resource, Api, reqparse
+from flask import jsonify, request
+from flask_restful import Api, Resource, reqparse
 
 from demo import db
 from demo.api.jobs.models import Job
+from demo.api.jobs import jobs_bp
 
-
-jobs_bp = Blueprint("jobs", __name__)
 api = Api(jobs_bp)
 
 parser = reqparse.RequestParser()

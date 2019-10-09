@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from flask import current_app
 import redis
 import rq
+from flask import current_app
 
 from demo import db
 

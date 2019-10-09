@@ -1,8 +1,8 @@
-from flask import render_template, request, current_app, jsonify
+from flask import current_app, jsonify, render_template, request
 
 from demo import db
-from demo.main import main_bp
 from demo.api.jobs.models import Job
+from demo.main import main_bp
 
 
 @main_bp.route("/")

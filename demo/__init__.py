@@ -1,9 +1,8 @@
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from redis import Redis
 import rq
-
+from flask import Flask, jsonify
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from redis import Redis
 
 # instantiate the extensions
 db = SQLAlchemy()

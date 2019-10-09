@@ -1,12 +1,11 @@
-from flask import Blueprint, request
-from flask_restful import Resource, Api
+from flask import request
+from flask_restful import Api, Resource
 from sqlalchemy import exc
 
 from demo import db
+from demo.api.users import users_bp
 from demo.api.users.models import User
 
-
-users_bp = Blueprint("users", __name__)
 api = Api(users_bp)
 
 
