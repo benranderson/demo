@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 from flask_restful import Resource, Api
 from sqlalchemy import exc
 
