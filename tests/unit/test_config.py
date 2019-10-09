@@ -3,7 +3,7 @@ import os
 
 def test_development_config(app):
     app.config.from_object("demo.config.DevelopmentConfig")
-    assert app.config["SECRET_KEY"] == "dev secret key"
+    assert app.config["SECRET_KEY"] == "development secret key"
     assert not app.config["TESTING"]
     assert app.config["SQLALCHEMY_DATABASE_URI"] == os.environ.get("DATABASE_URL")
 
@@ -18,6 +18,6 @@ def test_testing_config(app):
 
 def test_production_config(app):
     app.config.from_object("demo.config.ProductionConfig")
-    assert app.config["SECRET_KEY"] == "prod secret key"
+    assert app.config["SECRET_KEY"] == "production secret key"
     assert not app.config["TESTING"]
     assert app.config["SQLALCHEMY_DATABASE_URI"] == os.environ.get("DATABASE_URL")

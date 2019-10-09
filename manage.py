@@ -22,10 +22,10 @@ app = create_app(env)
 def test(cover):
     """Run the tests with or without coverage."""
     if cover:
-        cmd = "pytest --cov=src/"
+        cmd = "pytest -p no:warnings --cov=demo/ --cov-report html"
         print("Running tests with coverage.")
     else:
-        cmd = "pytest"
+        cmd = "pytest -p no:warnings"
         print("Running tests.")
     return subprocess.run(cmd, shell=True)
 
