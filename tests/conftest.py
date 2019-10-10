@@ -4,9 +4,9 @@ from demo import create_app
 from demo import db as _db
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def app():
-    """Setup flask test app, this only gets executed once."""
+    """Setup flask test app, this only gets executed once per module."""
     _app = create_app("test")
     with _app.app_context():
         yield _app
@@ -26,7 +26,7 @@ def client(app):
 @pytest.fixture(scope="module")
 def test_db(app):
     """
-    Setup database, this only gets executed once per session.
+    Setup database, this only gets executed once per module.
 
     :param app: Pytest fixture
     :return: SQLAlchemy database session
