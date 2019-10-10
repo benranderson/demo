@@ -1,5 +1,8 @@
 <p align="center">
-  <a href="https://benranderson.github.io/demo/"><img width="420px" src="https://raw.githubusercontent.com/benranderson/demo/master/docs/img/lights.jpeg" alt='starlette'></a>
+  <a href="https://benranderson.github.io/demo/"><img alt="lights" width="420px" src="https://raw.githubusercontent.com/benranderson/demo/master/docs/img/lights.jpeg"></a>
+</p>
+<p align="center">
+  <a href="https://gitlab.com/benranderson/demo/commits/master"><img alt="pipeline status" src="https://gitlab.com/benranderson/demo/badges/master/pipeline.svg" /></a>
 </p>
 
 ---
