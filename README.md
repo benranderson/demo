@@ -9,7 +9,7 @@
 
 **Documentation**: [https://benranderson.github.io/demo/](https://benranderson.github.io/demo/)
 
-**Deployed App**: [https://sheltered-plains-74194.herokuapp.com/users](https://sheltered-plains-74194.herokuapp.com/users)
+**Deployed App**: [https://benranderson-demo.herokuapp.com](https://benranderson-demo.herokuapp.com)
 
 ---
 
