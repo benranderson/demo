@@ -23,7 +23,7 @@ def client(app):
     yield app.test_client()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="module")
 def test_db(app):
     """
     Setup database, this only gets executed once per session.

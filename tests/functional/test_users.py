@@ -1,6 +1,6 @@
 import json
 
-from tests.utils import add_user
+from tests.utils import add_user, recreate_db
 
 
 class TestUsersList:
@@ -76,6 +76,7 @@ class TestUsers:
         assert "fail" in data["status"]
 
     def test_all_users(self, client, test_db):
+        recreate_db()
         add_user("michael", "michael@mherman.org")
         add_user("fletcher", "fletcher@notreal.com")
         resp = client.get("/users")
