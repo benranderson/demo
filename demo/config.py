@@ -19,9 +19,7 @@ class DevelopmentConfig(BaseConfig):
     NAME = "development"
     DEBUG = True
     SECRET_KEY = os.getenv("DEV_SECRET_KEY", "development secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", f"sqlite:///{basedir}/data-dev.sqlite"
-    )
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 class TestingConfig(BaseConfig):
@@ -29,18 +27,14 @@ class TestingConfig(BaseConfig):
     DEBUG = True
     TESTING = True
     SECRET_KEY = os.getenv("TEST_SECRET_KEY", "test secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_TEST_URL", f"sqlite:///{basedir}/data-test.sqlite"
-    )
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_TEST_URL")
 
 
 class ProductionConfig(BaseConfig):
     NAME = "production"
     DEBUG = False
     SECRET_KEY = os.getenv("PROD_SECRET_KEY", "production secret key")
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", f"sqlite:///{basedir}/data-prod.sqlite"
-    )
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 EXPORT_CONFIGS = [DevelopmentConfig, TestingConfig, ProductionConfig]
