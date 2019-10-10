@@ -50,6 +50,30 @@ class TestUsersList:
         assert "Sorry. That email already exists." in data["message"]
         assert "fail" in data["status"]
 
+    def test_remove_user(self, client, test_db):
+        recreate_db()
+        user = add_user("user-to-be-removed", "remove-me@email.io")
+        resp_one = client.get("/users")
+        data = json.loads(resp_one.data.decode())
+        assert resp_one.status_code == 200
+        assert len(data["data"]["users"]) == 1
+        resp_two = client.delete(f"/users/{user.id}")
+        data = json.loads(resp_two.data.decode())
+        assert resp_two.status_code == 200
+        assert "remove-me@email.io was removed!" in data["message"]
+        assert "success" in data["status"]
+        resp_three = client.get("/users")
+        data = json.loads(resp_three.data.decode())
+        assert resp_three.status_code == 200
+        assert len(data["data"]["users"]) == 0
+
+    def test_remove_user_incorrect_id(self, client, test_db):
+        resp = client.delete("/users/999")
+        data = json.loads(resp.data.decode())
+        assert resp.status_code == 404
+        assert "User does not exist" in data["message"]
+        assert "fail" in data["status"]
+
 
 class TestUsers:
     def test_single_user(self, client, test_db):

@@ -59,6 +59,20 @@ class Users(Resource):
         }
         return response_object, 200
 
+    def delete(self, user_id):
+        response_object = {"status": "fail", "message": "User does not exist"}
+        try:
+            user = User.query.filter_by(id=int(user_id)).first()
+        except ValueError:
+            return response_object, 404
+        if not user:
+            return response_object, 404
+        db.session.delete(user)
+        db.session.commit()
+        response_object["status"] = "success"
+        response_object["message"] = f"{user.email} was removed!"
+        return response_object, 200
+
 
 api.add_resource(UsersList, "/users")
 api.add_resource(Users, "/users/<user_id>")
