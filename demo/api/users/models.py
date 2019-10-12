@@ -1,7 +1,6 @@
 import os
 
 from sqlalchemy.sql import func
-from flask_admin.contrib.sqla import ModelView
 
 from demo import db
 
