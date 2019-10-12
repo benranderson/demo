@@ -34,6 +34,7 @@ test:
     POSTGRES_USER: runner
     POSTGRES_PASSWORD: ""
     DATABASE_TEST_URL: postgres://runner@postgres:5432/users
+    FLASK_ENV: development
   script:
     - pytest tests/ -p no:warnings
     # - flake8 project

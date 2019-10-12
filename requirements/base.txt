@@ -6,6 +6,7 @@ psycopg2-binary==2.8.3
 python-dotenv==0.10.3
 rq==1.1.0
 gunicorn==19.9.0
+Flask-Admin==1.5.3
 # Documentation
 mkdocs==1.0.4
 mkdocs-material==4.4.3

@@ -1,5 +1,8 @@
+import os
+
 import rq
 from flask import Flask, jsonify
+from flask_admin import Admin
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from redis import Redis
@@ -7,6 +10,7 @@ from redis import Redis
 # instantiate the extensions
 db = SQLAlchemy()
 migrate = Migrate()
+admin = Admin(template_mode="bootstrap3")
 
 
 def create_app(env=None):
@@ -23,6 +27,8 @@ def create_app(env=None):
     # set up extensions
     db.init_app(app)
     migrate.init_app(app, db)
+    if os.getenv("FLASK_ENV") == "development":
+        admin.init_app(app)
 
     # configure redis
     app.redis = Redis.from_url(app.config["REDIS_URL"])
